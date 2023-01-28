@@ -21,6 +21,10 @@ class RegisterUser {
     if (!name || !birthdate || !address || !username || !password) {
       throw new InvariantError('REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY');
     }
+
+    if (typeof name === 'string' || typeof birthdate === 'string' || typeof address === 'string' || typeof username === 'string' || typeof password === 'string') {
+      throw new InvariantError('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    }
   }
 }
 
