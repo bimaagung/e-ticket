@@ -22,8 +22,16 @@ class RegisterUser {
       throw new InvariantError('REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
-    if (typeof name === 'string' || typeof birthdate === 'string' || typeof address === 'string' || typeof username === 'string' || typeof password === 'string') {
+    if (typeof name !== 'string' || typeof birthdate !== 'string' || typeof address !== 'string' || typeof username !== 'string' || typeof password !== 'string') {
       throw new InvariantError('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    }
+
+    if (username.length > 50) {
+      throw new InvariantError('REGISTER_USER.USERNAME_LIMIT_CHAR');
+    }
+
+    if (!username.match(/^[\w]+$/)) {
+      throw new InvariantError('REGISTER_USER.USERNAME_CONTAIN_RESTRICTED_CHARACTER');
     }
   }
 }
