@@ -20,6 +20,7 @@ describe('a RegisterUser entities', () => {
       address: 'Pati',
       username: 478,
       password: 'secret',
+      retype: 'secret',
     };
 
     // Action & Assert
@@ -33,6 +34,7 @@ describe('a RegisterUser entities', () => {
       address: 'Pati',
       username: 'useruseruseruseruseruseruseruseruseruseruseruseruseruser',
       password: 'secret',
+      retype: 'secret',
     };
 
     // Action & Assert
@@ -46,6 +48,7 @@ describe('a RegisterUser entities', () => {
       address: 'Pati',
       username: 'user1* satu',
       password: 'secret',
+      retype: 'secret',
     };
 
     // Action & Assert
@@ -59,6 +62,7 @@ describe('a RegisterUser entities', () => {
       address: 'Pati',
       username: 'user1* satu',
       password: 'secret',
+      retype: 'secret',
     };
 
     // Action & Assert
@@ -73,6 +77,7 @@ describe('a RegisterUser entities', () => {
       address: 'Pati',
       username: 'user',
       password: 'secret',
+      retype: 'secret',
     };
 
     // Action

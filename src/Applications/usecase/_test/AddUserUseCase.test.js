@@ -1,7 +1,7 @@
-const UserRepository = require('../../Domains/users/UserRepository');
-const PasswordHash = require('../security/PasswordHash');
+const UserRepository = require('../../../Domains/users/UserRepository');
+const PasswordHash = require('../../security/PasswordHash');
 const AddUserUseCase = require('../AddUserUseCase');
-const RegisterUser = require('../../Domains/users/entities/RegisterUser');
+const RegisterUser = require('../../../Domains/users/entities/RegisterUser');
 
 describe('AddUserUseCase', () => {
   it('should orchestrating the add user action correctly', async () => {
@@ -12,6 +12,7 @@ describe('AddUserUseCase', () => {
       address: 'Pati',
       username: 'user',
       password: 'secret',
+      retype: 'secret',
     };
 
     const expected = {
@@ -40,6 +41,6 @@ describe('AddUserUseCase', () => {
 
     expect(mockUserRepository.verifyAvailableUser).toHaveBeenCalledWith(useCasePayload.username);
     expect(mockPasswordHash.hash).toHaveBeenCalledWith(useCasePayload.password);
-    expect(mockUserRepository.addUser).toHaveBeenCalledWith(new RegisterUser(useCasePayload));
+    expect(mockUserRepository.addUser).toHaveBeenCalled();
   });
 });

@@ -5,7 +5,7 @@ class RegisterUser {
     this._verifyPayload(payload);
 
     const {
-      name, birthdate, address, username, password,
+      name, birthdate, address, username, password, retype,
     } = payload;
 
     this.name = name;
@@ -13,18 +13,19 @@ class RegisterUser {
     this.address = address;
     this.username = username;
     this.password = password;
+    this.retype = retype;
   }
 
   _verifyPayload({
-    name, birthdate, address, username, password,
+    name, birthdate, address, username, password, retype,
   }) {
-    if (!name || !birthdate || !address || !username || !password) {
+    if (!name || !birthdate || !address || !username || !password || !retype) {
       throw new InvariantError('REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
     if (typeof name !== 'string' || typeof birthdate !== 'string'
         || typeof address !== 'string' || typeof username !== 'string'
-        || typeof password !== 'string') {
+        || typeof password !== 'string' || typeof retype !== 'string') {
       throw new InvariantError('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
 
