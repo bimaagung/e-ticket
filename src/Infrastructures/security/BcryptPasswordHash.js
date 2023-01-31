@@ -1,5 +1,5 @@
-const EncryptionHelper = require('../../../../Applications/security/PasswordHash');
-const AuthenticationError = require('../../../../Commons/AuthenticationError');
+const EncryptionHelper = require('../../Applications/security/PasswordHash');
+const AuthenticationError = require('../../Commons/AuthenticationError');
 
 class BcryptPasswordHash extends EncryptionHelper {
   constructor(bcrypt, saltRound = 10) {

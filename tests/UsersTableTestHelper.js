@@ -7,7 +7,7 @@ const UserTableTestHelper = {
     id = 'user-123', name = 'bima agung', birthdate = '24/07/1998', address = 'Pati', username = 'bima', password = 'secret',
   }) {
     const query = {
-      text: 'INSERT INTO users VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+      text: 'INSERT INTO users VALUES($1, $2, $3, $4, $5, $6)',
       values: [id, name, birthdate, address, username, password],
     };
 

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const BcryptEncryptionHelper = require('../BcryptPasswordHash');
-const AuthenticationError = require('../../../../../Commons/AuthenticationError');
+const AuthenticationError = require('../../../Commons/AuthenticationError');
 
 describe('BcryptEncryptionHelper', () => {
   describe('hash function', () => {
@@ -13,7 +13,7 @@ describe('BcryptEncryptionHelper', () => {
       const encryptedPassword = await bcryptEncryptionHelper.hash('plain_password');
 
       // Assert
-      expect(spyHash).toHaveBeenCalledWith('plain_password', 10);
+      expect(spyHash).toBeCalledWith('plain_password', 10);
       expect(typeof encryptedPassword).toEqual('string');
       expect(encryptedPassword).not.toEqual('plain_password');
     });
@@ -25,17 +25,18 @@ describe('BcryptEncryptionHelper', () => {
       const bcryptEncryptionHelper = new BcryptEncryptionHelper(bcrypt);
 
       // Action & Assert
-      await expect(() => bcryptEncryptionHelper.comparePassword('plain_password')).rejects.toThrowError(AuthenticationError);
+      await expect(bcryptEncryptionHelper.comparePassword('plain_password', 'secret')).rejects.toThrowError(AuthenticationError);
     });
+
     it('should not throw AuthenticationError if password match', async () => {
       // Arrange
       const bcryptEncryptionHelper = new BcryptEncryptionHelper(bcrypt);
       const plainPassword = 'plain_password';
-      const encryptedPassword = bcryptEncryptionHelper.hash(plainPassword);
+      const encryptedPassword = await bcryptEncryptionHelper.hash(plainPassword);
 
       // Action & Assert
-      await expect(() => bcryptEncryptionHelper.comparePassword(plainPassword, encryptedPassword))
-        .not.toThrowError(AuthenticationError);
+      await expect(bcryptEncryptionHelper.comparePassword(plainPassword, encryptedPassword))
+        .resolves.not.toThrow(AuthenticationError);
     });
   });
 });
